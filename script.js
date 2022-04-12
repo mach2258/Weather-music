@@ -1,7 +1,128 @@
+$("#current-location-btn").on("click", musicGetHere);
+
+$("#other-location-btn").on("click", checkButton);
+
+function checkButton() {
+    if ($('#paris-btn').prop('checked')) {
+        musicGet(weatherResponseParis);
+    } else if ($('#HK-btn').prop('checked')) {
+        musicGet(weatherResponseHK);
+    } else if ($('#cape-btn').prop('checked')) {
+        musicGet(weatherResponseCapeTown);
+    } else if ($('#belmopan-btn').prop('checked')) {
+        musicGet(weatherResponseBelmopan);
+    } else {
+        return;
+    }
+}
+
+function musicGetHere() {
+    musicGet(weatherResponseHere);
+}
+
+var weatherResponseHere
+var locationHereLat
+var locationHereLon
+var weatherResponseParis
+var weatherResponseHK
+var weatherResponseCapeTown
+var weatherResponseBelmopan
+
+getLocation();
+getDataParis();
+getDataHK();
+getDataCapeTown();
+getDataBelmopan();
+
+function getLocation() {
+    fetch("http://ip-api.com/json")
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            locationHereLat = data.lat;
+            locationHereLon = data.lon;
+            getData();
+        })
+}
+
+function getData() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${locationHereLat}&lon=${locationHereLon}&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseHere = data;
+        })
+
+
+}
+
+function getDataParis() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=48.8566&lon=2.3522&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseParis = data;
+        })
+
+
+}
+
+function getDataHK() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=22.3193&lon=114.1694&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseHK = data;
+        })
+
+
+}
+
+function getDataCapeTown() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=33.9249&lon=18.4241&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseCapeTown = data;
+        })
+
+
+}
+
+function getDataBelmopan() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=17.2510&lon=88.7590&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseBelmopan = data;
+        })
+
+
+}
+
+function musicGet(weatherResponse) {
+    console.log(weatherResponse)
+    //code for sorting through the weather response and deciding which playlist to get
+
+    //get playlist from spotify
+
+    //assign playlist to html elements
+
+
+}
+
+// Spotify API ------------------------------------------------------------------------------
+
 const APIController = (function() {
     
-    const clientId = '';
-    const clientSecret = '';
+    const clientId = 'ADD YOUR CLIENT ID';
+    const clientSecret = 'ADD YOUR CLIENT SECRET';
 
     // private methods
     const _getToken = async () => {
@@ -56,17 +177,6 @@ const APIController = (function() {
         return data.items;
     }
 
-    const _getTrack = async (token, trackEndPoint) => {
-
-        const result = await fetch(`${trackEndPoint}`, {
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-        });
-
-        const data = await result.json();
-        return data;
-    }
-
     return {
         getToken() {
             return _getToken();
@@ -79,12 +189,12 @@ const APIController = (function() {
         },
         getTracks(token, tracksEndPoint) {
             return _getTracks(token, tracksEndPoint);
-        },
-        getTrack(token, trackEndPoint) {
-            return _getTrack(token, trackEndPoint);
         }
     }
-})();// UI Module
+})();
+
+
+// UI Module
 const UIController = (function() {
 
     //object to hold references to html selectors
@@ -92,7 +202,6 @@ const UIController = (function() {
         selectGenre: '',
         selectPlaylist: '',
         buttonSubmit: '',
-        divSongDetail: '',
         hfToken: '',
         divSonglist: ''
     }
@@ -106,8 +215,7 @@ const UIController = (function() {
                 genre: document.querySelector(DOMElements.selectGenre),
                 playlist: document.querySelector(DOMElements.selectPlaylist),
                 tracks: document.querySelector(DOMElements.divSonglist),
-                submit: document.querySelector(DOMElements.buttonSubmit),
-                songDetail: document.querySelector(DOMElements.divSongDetail)
+                submit: document.querySelector(DOMElements.buttonSubmit)
             }
         },
 
@@ -117,10 +225,10 @@ const UIController = (function() {
             document.querySelector(DOMElements.selectGenre).insertAdjacentHTML('beforeend', html);
         }, 
 
-        createPlaylist(text, value) {
-            const html = `<option value="${value}">${text}</option>`;
-            document.querySelector(DOMElements.selectPlaylist).insertAdjacentHTML('beforeend', html);
-        },
+        // createPlaylist(text, value) {
+        //     const html = `<option value="${value}">${text}</option>`;
+        //     document.querySelector(DOMElements.selectPlaylist).insertAdjacentHTML('beforeend', html);
+        // },
 
         // need method to create a track list group item 
         createTrack(id, name) {
@@ -128,12 +236,12 @@ const UIController = (function() {
             document.querySelector(DOMElements.divSonglist).insertAdjacentHTML('beforeend', html);
         },
 
-        // need method to create the song detail
-        createTrackDetail(img, title, artist) {
+        // need method to create the playlist selection
+        createPlaylist(img, title) {
 
-            const detailDiv = document.querySelector(DOMElements.divSongDetail);
-            // any time user clicks a new song, we need to clear out the song detail div
-            detailDiv.innerHTML = '';
+            const PlaylistDiv = document.querySelector(DOMElements.selectPlaylist);
+            // any time user clicks a new playlist, we need to clear out the playlist div
+            PlaylistDiv.innerHTML = '';
 
             const html = 
             `
@@ -141,23 +249,15 @@ const UIController = (function() {
                 <img src="${img}" alt="">        
             </div>
             <div class="row col-sm-12 px-0">
-                <label for="Genre" class="form-label col-sm-12">${title}:</label>
+                <label for="Title: " class="form-label col-sm-12">${title}</label>
             </div>
-            <div class="row col-sm-12 px-0">
-                <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
-            </div> 
             `;
 
-            detailDiv.insertAdjacentHTML('beforeend', html)
-        },
-
-        resetTrackDetail() {
-            this.inputField().songDetail.innerHTML = '';
+            PlaylistDiv.insertAdjacentHTML('beforeend', html)
         },
 
         resetTracks() {
             this.inputField().tracks.innerHTML = '';
-            this.resetTrackDetail();
         },
 
         resetPlaylist() {
@@ -175,5 +275,84 @@ const UIController = (function() {
             }
         }
     }
-
 })();
+
+const APPController = (function(UICtrl, APICtrl) {
+
+    // get input field object ref
+    const DOMInputs = UICtrl.inputField();
+
+    // get genres on page load
+    const loadGenres = async () => {
+        //get the token
+        const token = await APICtrl.getToken();           
+        //store the token onto the page
+        UICtrl.storeToken(token);
+        //get the genres
+        const genres = await APICtrl.getGenres(token);
+        //populate our genres select element
+        genres.forEach(element => UICtrl.createGenre(element.name, element.id));
+    }
+
+    // create genre change event listener
+    DOMInputs.genre.addEventListener('change', async () => {
+        //reset the playlist
+        UICtrl.resetPlaylist();
+        //get the token that's stored on the page
+        const token = UICtrl.getStoredToken().token;        
+        // get the genre select field
+        const genreSelect = UICtrl.inputField().genre;       
+        // get the genre id associated with the selected genre
+        const genreId = genreSelect.options[genreSelect.selectedIndex].value;             
+        // ge the playlist based on a genre
+        const playlist = await APICtrl.getPlaylistByGenre(token, genreId);       
+        // create a playlist list item for every playlist returned
+        playlist.forEach(p => UICtrl.createPlaylist(p.name, p.tracks.href));
+    });
+     
+
+    // create submit button click event listener
+    DOMInputs.submit.addEventListener('click', async (e) => {
+        // prevent page reset
+        e.preventDefault();
+        // clear tracks
+        UICtrl.resetTracks();
+        //get the token
+        const token = UICtrl.getStoredToken().token;        
+        // get the playlist field
+        const playlistSelect = UICtrl.inputField().playlist;
+        // get track endpoint based on the selected playlist
+        const tracksEndPoint = playlistSelect.options[playlistSelect.selectedIndex].value;
+        // get the list of tracks
+        const tracks = await APICtrl.getTracks(token, tracksEndPoint);
+        // create a track list item
+        tracks.forEach(el => UICtrl.createTrack(el.track.href, el.track.name))
+        
+    });
+
+    // create song selection click event listener
+    DOMInputs.tracks.addEventListener('click', async (e) => {
+        // prevent page reset
+        e.preventDefault();
+        UICtrl.resetTrackDetail();
+        // get the token
+        const token = UICtrl.getStoredToken().token;
+        // get the track endpoint
+        const trackEndpoint = e.target.id;
+        //get the track object
+        const track = await APICtrl.getTrack(token, trackEndpoint);
+        // load the track details
+        UICtrl.createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name);
+    });    
+
+    return {
+        init() {
+            console.log('App is starting');
+            loadGenres();
+        }
+    }
+
+})(UIController, APIController);
+
+// will need to call a method to load the genres on page load
+APPController.init();

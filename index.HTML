@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Music For your sky</title>
     <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <nav>
-        <div class="nav-wrapper green accent-4" >
-          <a href="#" class="brand-logo center" ><i class="material-icons large right">cloud</i>SkyNotes!</a>
-          <p id="nav-mobile" class="right hide-on-med-and-down">The place for music to match your weather!</p>
-        </div>
-      </nav>
+      <div class="nav-wrapper green accent-4">
+        <a href="#" class="brand-logo center"
+          ><i class="material-icons large right">cloud</i>SkyNotes!</a
+        >
+      </div>
+    </nav>
+    <section class="hero1">
+      <div id="button-container">
+        <a
+          class="waves-effect waves-light btn green accent-4 z-depth-3"
+          id="current-location-btn" 
+          ><i class="material-icons left">cloud</i>Generate playlist for your
+          location</a>
+      </div>
+    </section>
+    <section class="hero2">
+      <div>
+        <a
+          class="waves-effect waves-light btn green accent-4 z-depth-3"
+          id="other-location-btn"
+          ><i class="material-icons left">cloud</i>See what the mood is in a
+          different place</a
+        >
+      </div>
+    </section>
 
-    <div id="button-container">
-        <button type="button" class="generate-btn" id="current-location-btn">
-            Generate for your location
-        </button type="button" class="generate-btn" id="other-location-btn">
-        <a class="waves-effect waves-light btn green accent-4"><i class="material-icons left">cloud</i>button</a>
-        <button>
-            See what the mood is in a different place
-        </button>
-        <a class="waves-effect waves-light btn green accent-4"><i class="material-icons left">cloud</i>button</a>
-        <form>
-            <input type="radio" name="place1">
-            <label for="place1">place1</label>
-            <br>
-            <input type="radio" name="place2">
-            <label for="place2">place2</label>
-            <br>
-            <input type="radio" name="place3">
-            <label for="place3">place3</label>
-            <br>
-            <input type="radio" name="place4">
-            <label for="place4">place4</label>
-        </form>
+    <div class="collection container">
+      <a href="#!" class="collection-item black-text">Paris, France</a>
+      <a href="#!" class="collection-item active green accent-4 black-text"
+        >Hong Kong</a
+      >
+      <a href="#!" class="collection-item black-text">New York, U.S.A.</a>
+      <a href="#!" class="collection-item black-text">Belmopan, Belize</a>
     </div>
-
+    <footer class="page-footer green accent-4">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Thank you!</h5>
+            <p class="grey-text text-lighten-4">
+              Created by Sam Grumbles, Erich Elste, Aaron Losey, and Rene
+              Vasquez
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">© 2022 Copyright Text</div>
+      </div>
+    </footer>
     <script src="jquery-3.6.0.min.js"></script>
     <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-
+  </body>
 </html>

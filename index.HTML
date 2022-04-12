@@ -5,26 +5,27 @@
     <meta charset="UTF-8" />
     <title>Music For your sky</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <navbar>
-        <div>
-            <h3>Welcome to <h1>SkyNotes!</h1> The place for music to match your weather!
-            </h3>
+    <nav>
+        <div class="nav-wrapper green accent-4" >
+          <a href="#" class="brand-logo center" ><i class="material-icons large right">cloud</i>SkyNotes!</a>
+          <p id="nav-mobile" class="right hide-on-med-and-down">The place for music to match your weather!</p>
         </div>
-        <a>
-
-        </a>
-    </navbar>
+      </nav>
 
     <div id="button-container">
         <button type="button" class="generate-btn" id="current-location-btn">
             Generate for your location
         </button type="button" class="generate-btn" id="other-location-btn">
+        <a class="waves-effect waves-light btn green accent-4"><i class="material-icons left">cloud</i>button</a>
         <button>
             See what the mood is in a different place
         </button>
+        <a class="waves-effect waves-light btn green accent-4"><i class="material-icons left">cloud</i>button</a>
         <form>
             <input type="radio" name="place1">
             <label for="place1">place1</label>
@@ -40,8 +41,9 @@
         </form>
     </div>
 
-    <script src="jquery-3.6.0.min.js"></script>"
+    <script src="jquery-3.6.0.min.js"></script>
     <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>

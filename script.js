@@ -1,5 +1,24 @@
-$("#current-location-btn").on("click", musicGet(weatherResponseHere));
+$("#current-location-btn").on("click", musicGetHere);
 
+$("#other-location-btn").on("click", checkButton);
+
+function checkButton() {
+    if ($('#paris-btn').prop('checked')) {
+        musicGet(weatherResponseParis);
+    } else if ($('#HK-btn').prop('checked')) {
+        musicGet(weatherResponseHK);
+    } else if ($('#cape-btn').prop('checked')) {
+        musicGet(weatherResponseCapeTown);
+    } else if ($('#belmopan-btn').prop('checked')) {
+        musicGet(weatherResponseBelmopan);
+    } else {
+        return;
+    }
+}
+
+function musicGetHere() {
+    musicGet(weatherResponseHere);
+}
 
 var weatherResponseHere
 var locationHereLat
@@ -34,7 +53,6 @@ function getData() {
         })
         .then(function (data) {
             weatherResponseHere = data;
-            console.log(weatherResponseHere);
         })
 
 
@@ -47,7 +65,6 @@ function getDataParis() {
         })
         .then(function (data) {
             weatherResponseParis = data;
-            console.log(weatherResponseParis);
         })
 
 
@@ -60,7 +77,6 @@ function getDataHK() {
         })
         .then(function (data) {
             weatherResponseHK = data;
-            console.log(weatherResponseHK);
         })
 
 
@@ -73,7 +89,6 @@ function getDataCapeTown() {
         })
         .then(function (data) {
             weatherResponseCapeTown = data;
-            console.log(weatherResponseCapeTown);
         })
 
 
@@ -86,14 +101,13 @@ function getDataBelmopan() {
         })
         .then(function (data) {
             weatherResponseBelmopan = data;
-            console.log(weatherResponseBelmopan);
         })
 
 
 }
 
 function musicGet(weatherResponse) {
-    console.log("working so far")
+    console.log(weatherResponse)
     //code for sorting through the weather response and deciding which playlist to get
 
     //get playlist from spotify

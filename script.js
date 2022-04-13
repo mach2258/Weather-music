@@ -108,7 +108,67 @@ function getDataBelmopan() {
 
 function musicGet(weatherResponse) {
     console.log(weatherResponse)
-    //code for sorting through the weather response and deciding which playlist to get
+    var skyCondition = weatherResponse.weather[0].id;
+
+    // skyCondition is an integer
+
+    // 200-232 thunderstorm
+
+    // 300-321 light rain
+
+    // 500-531 rain
+
+    // 600-622 snow
+
+    // 741 fog
+
+    // 781 tornado
+
+    // 751 sand
+
+    var temp = weatherResponse.main.temp;
+
+    // temp is a number, recorded in kelvin
+
+    // under 273, freezing point of water
+
+    // 283- cold day
+
+    // 293- room temperature
+
+    // 303- hot day
+
+    var windSpeed = weatherResponse.wind.speed
+
+    // windSpeed is a number
+
+    // 12 or over is windy
+
+    var desiredPlaylist
+
+    if (skyCondition >= 200 && skyCondition <= 232) {
+        // desiredPlaylist = playlist for thunder
+    } else if (skyCondition >= 300 && skyCondition <= 321) {
+        // desiredPlaylist = playlist for light rain
+    } else if (skyCondition >= 500 && skyCondition <= 531) {
+        // desiredPlaylist = playlist for heavy rain
+    } else if (skyCondition >= 500 && skyCondition <= 531) {
+        // desiredPlaylist = playlist for heavy rain
+    } else if (skyCondition >= 600 && skyCondition <= 622) {
+        // desiredPlaylist = playlist for snow
+    } else if (skyCondition == 741) {
+        // desiredPlaylist = playlist for fog
+    } else if (skyCondition == 781) {
+        // desiredPlaylist = playlist for tornado
+    } else if (skyCondition == 751) {
+        // desiredPlaylist = playlist for sandstorm
+    } else if (temp <= 283) {
+        // desiredPlaylist = playlist for cold day
+    } else if (temp >= 300) {
+        // desiredPlaylist = playlist for hot day
+    } else {
+        // desiredPlaylist = playlist for nice day
+    }
 
     //get playlist from spotify
 

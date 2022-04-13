@@ -1,3 +1,18 @@
+
+
+/* header{
+    background: url(images/kazuend-2KXEb_8G5vo-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 1000px;
+} */
+
+@media screen and (max-width: 700px){
+    header{
+        min-height: 500px;
+    }
+}
+
 .hero1 {
     height: 700px;
     width: 100%;
@@ -30,3 +45,4 @@
     padding: 10px;
   }
   
+

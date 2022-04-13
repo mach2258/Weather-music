@@ -1,3 +1,4 @@
+
 $("#current-location-btn").on("click", musicGetHere);
 
 $("#other-location-btn").on("click", checkButton);

@@ -1,4 +1,9 @@
 
+$(document).ready(function(){
+    $('.parallax').parallax();
+    console.log("hit")
+});
+
 $("#current-location-btn").on("click", musicGetHere);
 
 $("#other-location-btn").on("click", checkButton);
@@ -422,7 +427,7 @@ getToken();
 //         // create a playlist list item for every playlist returned
 //         playlist.forEach(p => UICtrl.createPlaylist(p.name, p.tracks.href));
 //     });
-     
+    
 
 //     // create submit button click event listener
 //     DOMInputs.submit.addEventListener('click', async (e) => {

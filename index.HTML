@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Music For your sky</title>
         <!-- Used for social icons -->
@@ -14,58 +13,62 @@
     <link rel="stylesheet" href="./style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-
 <body>
-    <header>
-        <nav class="nav-wrapper transparent">
-            <div class="container">
-                <a href="" class="brand-logo">Sky Notes!</a>
-                <ul class="right hidden-on-med-and-down">
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Genre picker</a></li>
-                    <li><a href="#">Weather music</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
-    <div class="container">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
+    <nav>
+      <div class="nav-wrapper green accent-4">
+        <a href="#" class="brand-logo center"
+          ><i class="material-icons large right">cloud</i>SkyNotes!</a
+        >
+      </div>
+    </nav>
+    <section class="hero1">
+      <div id="button-container">
+        <a
+          class="waves-effect waves-light btn green accent-4 z-depth-3"
+          id="current-location-btn" 
+          ><i class="material-icons left">cloud</i>Generate playlist for your
+          location</a>
+      </div>
+    </section>
+    <section class="hero2">
+      <div>
+        <a
+          class="waves-effect waves-light btn green accent-4 z-depth-3"
+          id="other-location-btn"
+          ><i class="material-icons left">cloud</i>See what the mood is in a
+          different place</a
+        >
+      </div>
+    </section>
+    <div class="collection container">
+      <a href="#!" class="collection-item black-text">Paris, France</a>
+      <a href="#!" class="collection-item active green accent-4 black-text"
+        >Hong Kong</a
+      >
+      <a href="#!" class="collection-item black-text">New York, U.S.A.</a>
+      <a href="#!" class="collection-item black-text">Belmopan, Belize</a>
 
-    <div class="parallax-container">
-        <div class="parallax">
-            <img src="images/diego-ph-BCuxVP5WEsU-unsplash.jpg" alt="" class="responsive-img">
+    </div>
+    <footer class="page-footer green accent-4">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Thank you!</h5>
+            <p class="grey-text text-lighten-4">
+              Created by Sam Grumbles, Erich Elste, Aaron Losey, and Rene
+              Vasquez
+            </p>
+          </div>
         </div>
-    </div>
-
-    <div id="button-container">
-        <button type="button" class="generate-btn" id="current-location-btn">
-            Generate for your location
-        </button>
-        <button type="button" class="generate-btn" id="other-location-btn">
-            See what the mood is in a different place
-        </button>
-        <form>
-            <input type="radio" name="location" value="place1" id="paris-btn">
-            <label for="place1">Paris</label>
-            <br>
-            <input type="radio" name="location" value="place2" id="HK-btn">
-            <label for="place2">Hong Kong</label>
-            <br>
-            <input type="radio" name="location" value="place3" id="cape-btn">
-            <label for="place3">Cape Town</label>
-            <br>
-            <input type="radio" name="location" value="place4" id="belmopan-btn">
-            <label for="place4">Belmopan</label>
-        </form>
-    </div>
-
+      </div>
+      <div class="footer-copyright">
+        <div class="container">© 2022 Copyright Text</div>
+      </div>
+    </footer>
+    <script src="jquery-3.6.0.min.js"></script>
     <script src="./script.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
 </html>

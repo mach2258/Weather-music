@@ -1,13 +1,48 @@
 
-header{
+
+/* header{
     background: url(images/kazuend-2KXEb_8G5vo-unsplash.jpg);
     background-size: cover;
     background-position: center;
     min-height: 1000px;
-}
+} */
 
 @media screen and (max-width: 700px){
     header{
         min-height: 500px;
     }
 }
+
+.hero1 {
+    height: 700px;
+    width: 100%;
+    margin-bottom: 25px;
+    background-image: url("./assets/mixing_booth.jpg");
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .hero2 {
+    height: 700px;
+    width: 100%;
+    margin-bottom: 25px;
+    background-image: url("./assets/desk.jpg");
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .hero h2 {
+    color: var(--gray);
+    background-color: var(--blue);
+    font-size: 200%;
+    margin: 0px 100px 30px 100px;
+    padding: 10px;
+  }
+  
+

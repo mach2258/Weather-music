@@ -1,3 +1,4 @@
+
 $("#current-location-btn").on("click", musicGetHere);
 
 $("#other-location-btn").on("click", checkButton);
@@ -146,28 +147,47 @@ function musicGet(weatherResponse) {
 
     var desiredPlaylist
 
-    if (skyCondition >= 200 && skyCondition <= 232) {
+    if (skyCondition >= 200 && skyCondition <= 531) {
         // desiredPlaylist = playlist for thunder
+        playlists = '';
+        getPlaylistStormy();
+
     } else if (skyCondition >= 300 && skyCondition <= 321) {
         // desiredPlaylist = playlist for light rain
+        playlists = '';
+        getPlaylistStormy();
     } else if (skyCondition >= 500 && skyCondition <= 531) {
         // desiredPlaylist = playlist for heavy rain
-    } else if (skyCondition >= 500 && skyCondition <= 531) {
-        // desiredPlaylist = playlist for heavy rain
+        playlists = '';
+        getPlaylistStormy();
     } else if (skyCondition >= 600 && skyCondition <= 622) {
         // desiredPlaylist = playlist for snow
+        playlists = '';
+        getPlaylistSnow();
     } else if (skyCondition == 741) {
         // desiredPlaylist = playlist for fog
+        playlists = '';
+        getPlaylistFog();
     } else if (skyCondition == 781) {
         // desiredPlaylist = playlist for tornado
+        playlists = '';
+        getPlaylistTornado();
     } else if (skyCondition == 751) {
         // desiredPlaylist = playlist for sandstorm
+        playlists = '';
+        getPlaylistSandStorm();
     } else if (temp <= 283) {
         // desiredPlaylist = playlist for cold day
+        playlists = '';
+        getPlaylistCold();
     } else if (temp >= 300) {
         // desiredPlaylist = playlist for hot day
+        playlists = '';
+        getPlaylistHot();
     } else {
         // desiredPlaylist = playlist for nice day
+        playlists = '';
+        getPlaylistSunny();
     }
 
     //get playlist from spotify
@@ -181,89 +201,12 @@ function musicGet(weatherResponse) {
 var clientId = '234754f0bf294bf5b88cd420b4bb8a24';
 var clientSecret = '24b6ec5fed5144008b8dfe088c8529c9';
 var token;
-var limit = 10;
-var catagories = [];
 var playlists = [];
-var playlistURL = '';
-var tracks = [];
+var playlistURL = [];
 
 getToken();
-// getGenres(token);
-getPlaylists(token, 'country', limit)
-
-// function APIController(){
-    
-
-//     // private methods
-//     const _getToken = async () => {
-
-//         const result = await fetch('https://accounts.spotify.com/api/token', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type' : 'application/x-www-form-urlencoded', 
-//                 'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
-//             },
-//             body: 'grant_type=client_credentials'
-//         });
-
-//         const data = await result.json();
-//         console.log(data);
-//         return data.access_token;
-//     }
-    
-//     const _getGenres = async (token) => {
-
-//         const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
-//             method: 'GET',
-//             headers: { 'Authorization' : 'Bearer ' + token}
-//         });
-
-//         const data = await result.json();
-//         console.log(data);
-//         return data.categories.items;
-//     }
-
-//     const _getPlaylistByGenre = async (token, genreId) => {
-
-//         const limit = 10;
-        
-//         const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
-//             method: 'GET',
-//             headers: { 'Authorization' : 'Bearer ' + token}
-//         });
-
-//         const data = await result.json();
-//         return data.playlists.items;
-//     }
-
-//     const _getTracks = async (token, tracksEndPoint) => {
-
-//         const limit = 10;
-
-//         const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
-//             method: 'GET',
-//             headers: { 'Authorization' : 'Bearer ' + token}
-//         });
-
-//         const data = await result.json();
-//         return data.items;
-//     }
-
-//     return {
-//         getToken() {
-//             return _getToken();
-//         },
-//         getGenres(token) {
-//             return _getGenres(token);
-//         },
-//         getPlaylistByGenre(token, genreId) {
-//             return _getPlaylistByGenre(token, genreId);
-//         },
-//         getTracks(token, tracksEndPoint) {
-//             return _getTracks(token, tracksEndPoint);
-//         }
-//     }
-// };
+// getPlaylistStormy();
+getPlaylistSunny();
 
 function getToken() {
     fetch('https://accounts.spotify.com/api/token', {
@@ -283,45 +226,131 @@ function getToken() {
         })
 }
 
-function getGenres() {
-    fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
+function getPlaylistSunny() {
+    fetch(`https://api.spotify.com/v1/search?q=sunny&type=playlist&limit=5&offset=5`, { 
         method: 'GET',
-        headers: { 'Authorization' : 'Bearer' + token}
-    })
+        headers:{ 'Accept' : 'application/json', 
+        'Content-Type' : 'application/json', 
+        'Authorization' : 'Bearer ' + token}
+})
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            catagories = data;
-            console.log(data);
+            playlists = data.playlists.items;
+            console.log(playlists);
         })
 }
 
-function getPlaylists(token, genreId, limit) {
-    fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
+function getPlaylistStormy() {
+    fetch(`https://api.spotify.com/v1/search?q=stormy%20days&type=playlist&limit=5&offset=5`, { 
         method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    })
+        headers:{ 'Accept' : 'application/json', 
+        'Content-Type' : 'application/json', 
+        'Authorization' : 'Bearer ' + token}
+})
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            playlists = data;
-            console.log(data);
+            playlists = data.playlists.items;
+            console.log(playlists);
         })
 }
 
-function getTracks(token) {
-    fetch(`${tracksEndPoint}?limit=${limit}`, {
+function getPlaylistSnow() {
+    fetch(`https://api.spotify.com/v1/search?q=snowy&type=playlist&limit=5&offset=5`, { 
         method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    })
+        headers:{ 'Accept' : 'application/json', 
+        'Content-Type' : 'application/json', 
+        'Authorization' : 'Bearer ' + token}
+})
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            tracks = data;
-            console.log(data);
+            playlists = data.playlists.items;
+            console.log(playlists);
+        })
+}
+
+function getPlaylistFog() {
+    fetch(`https://api.spotify.com/v1/search?q=foggy&type=playlist&limit=5&offset=5`, { 
+        method: 'GET',
+        headers:{ 'Accept' : 'application/json', 
+        'Content-Type' : 'application/json', 
+        'Authorization' : 'Bearer ' + token}
+})
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            playlists = data.playlists.items;
+            console.log(playlists);
+        })
+}
+
+function getPlaylistTornado() {
+    fetch(`https://api.spotify.com/v1/search?q=tornado&type=playlist&limit=5&offset=5`, { 
+        method: 'GET',
+        headers:{ 'Accept' : 'application/json', 
+        'Content-Type' : 'application/json', 
+        'Authorization' : 'Bearer ' + token}
+})
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            playlists = data.playlists.items;
+            console.log(playlists);
+        })
+}
+
+function getPlaylistSandStorm() {
+    fetch(`https://api.spotify.com/v1/search?q=desert&type=playlist&limit=5&offset=5`, { 
+        method: 'GET',
+        headers:{ 'Accept' : 'application/json', 
+        'Content-Type' : 'application/json', 
+        'Authorization' : 'Bearer ' + token}
+})
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            playlists = data.playlists.items;
+            console.log(playlists);
+        })
+}
+
+function getPlaylistCold() {
+    fetch(`https://api.spotify.com/v1/search?q=cold%20days&type=playlist&limit=5&offset=5`, { 
+        method: 'GET',
+        headers:{ 'Accept' : 'application/json', 
+        'Content-Type' : 'application/json', 
+        'Authorization' : 'Bearer ' + token}
+})
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            playlists = data.playlists.items;
+            console.log(playlists);
+        })
+}
+
+function getPlaylistHot() {
+    fetch(`https://api.spotify.com/v1/search?q=summer&type=playlist&limit=5&offset=5`, { 
+        method: 'GET',
+        headers:{ 'Accept' : 'application/json', 
+        'Content-Type' : 'application/json', 
+        'Authorization' : 'Bearer ' + token}
+})
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            playlists = data.playlists.items;
+            console.log(playlists);
         })
 }
 

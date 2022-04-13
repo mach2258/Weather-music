@@ -178,85 +178,152 @@ function musicGet(weatherResponse) {
 }
 
 // Spotify API ------------------------------------------------------------------------------
+var clientId = '234754f0bf294bf5b88cd420b4bb8a24';
+var clientSecret = '24b6ec5fed5144008b8dfe088c8529c9';
+var token;
+var limit = 10;
+var catagories = [];
+var playlists = [];
+var playlistURL = '';
+var tracks = [];
 
-function APIController(){
+getToken();
+// getGenres(token);
+getPlaylists(token, 'country', limit)
+
+// function APIController(){
     
-    const clientId = '234754f0bf294bf5b88cd420b4bb8a24';
-    const clientSecret = '24b6ec5fed5144008b8dfe088c8529c9';
 
-    // private methods
-    const _getToken = async () => {
+//     // private methods
+//     const _getToken = async () => {
 
-        const result = await fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/x-www-form-urlencoded', 
-                'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
-            },
-            body: 'grant_type=client_credentials'
-        });
+//         const result = await fetch('https://accounts.spotify.com/api/token', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type' : 'application/x-www-form-urlencoded', 
+//                 'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
+//             },
+//             body: 'grant_type=client_credentials'
+//         });
 
-        const data = await result.json();
-        console.log(data);
-        return data.access_token;
-    }
+//         const data = await result.json();
+//         console.log(data);
+//         return data.access_token;
+//     }
     
-    const _getGenres = async (token) => {
+//     const _getGenres = async (token) => {
 
-        const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-        });
+//         const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
+//             method: 'GET',
+//             headers: { 'Authorization' : 'Bearer ' + token}
+//         });
 
-        const data = await result.json();
-        console.log(data);
-        return data.categories.items;
-    }
+//         const data = await result.json();
+//         console.log(data);
+//         return data.categories.items;
+//     }
 
-    const _getPlaylistByGenre = async (token, genreId) => {
+//     const _getPlaylistByGenre = async (token, genreId) => {
 
-        const limit = 10;
+//         const limit = 10;
         
-        const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-        });
+//         const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
+//             method: 'GET',
+//             headers: { 'Authorization' : 'Bearer ' + token}
+//         });
 
-        const data = await result.json();
-        return data.playlists.items;
-    }
+//         const data = await result.json();
+//         return data.playlists.items;
+//     }
 
-    const _getTracks = async (token, tracksEndPoint) => {
+//     const _getTracks = async (token, tracksEndPoint) => {
 
-        const limit = 10;
+//         const limit = 10;
 
-        const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-        });
+//         const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
+//             method: 'GET',
+//             headers: { 'Authorization' : 'Bearer ' + token}
+//         });
 
-        const data = await result.json();
-        return data.items;
-    }
+//         const data = await result.json();
+//         return data.items;
+//     }
 
-    return {
-        getToken() {
-            return _getToken();
+//     return {
+//         getToken() {
+//             return _getToken();
+//         },
+//         getGenres(token) {
+//             return _getGenres(token);
+//         },
+//         getPlaylistByGenre(token, genreId) {
+//             return _getPlaylistByGenre(token, genreId);
+//         },
+//         getTracks(token, tracksEndPoint) {
+//             return _getTracks(token, tracksEndPoint);
+//         }
+//     }
+// };
+
+function getToken() {
+    fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/x-www-form-urlencoded', 
+            'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
         },
-        getGenres(token) {
-            return _getGenres(token);
-        },
-        getPlaylistByGenre(token, genreId) {
-            return _getPlaylistByGenre(token, genreId);
-        },
-        getTracks(token, tracksEndPoint) {
-            return _getTracks(token, tracksEndPoint);
-        }
-    }
-};
+        body: 'grant_type=client_credentials'
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            token = data.access_token;
+            console.log(data);
+        })
+}
 
-APIController().getToken();
-APIController().getGenres();
+function getGenres() {
+    fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer' + token}
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            catagories = data;
+            console.log(data);
+        })
+}
+
+function getPlaylists(token, genreId, limit) {
+    fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            playlists = data;
+            console.log(data);
+        })
+}
+
+function getTracks(token) {
+    fetch(`${tracksEndPoint}?limit=${limit}`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            tracks = data;
+            console.log(data);
+        })
+}
 
 // // UI Module
 // const UIController = (function() {

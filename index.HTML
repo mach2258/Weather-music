@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <link rel="stylesheet" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -45,28 +46,25 @@
     <div id="button-container">
         <button type="button" class="generate-btn" id="current-location-btn">
             Generate for your location
-        </button type="button" class="generate-btn" id="other-location-btn">
-        <button>
+        </button>
+        <button type="button" class="generate-btn" id="other-location-btn">
             See what the mood is in a different place
         </button>
         <form>
-            <input type="radio" name="place1">
-            <label for="place1">place1</label>
+            <input type="radio" name="location" value="place1" id="paris-btn">
+            <label for="place1">Paris</label>
             <br>
-            <input type="radio" name="place2">
-            <label for="place2">place2</label>
+            <input type="radio" name="location" value="place2" id="HK-btn">
+            <label for="place2">Hong Kong</label>
             <br>
-            <input type="radio" name="place3">
-            <label for="place3">place3</label>
+            <input type="radio" name="location" value="place3" id="cape-btn">
+            <label for="place3">Cape Town</label>
             <br>
-            <input type="radio" name="place4">
-            <label for="place4">place4</label>
+            <input type="radio" name="location" value="place4" id="belmopan-btn">
+            <label for="place4">Belmopan</label>
         </form>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./script.js"></script>
 </body>
 

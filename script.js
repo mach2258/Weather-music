@@ -194,6 +194,8 @@ function getToken() {
         .then(function (data) {
             token = data.access_token;
             console.log(token);
+
+            //move this function to the generate button when generate button is live
             getPlaylist();
            
         })
@@ -212,6 +214,7 @@ function getPlaylist() {
     .then(function (data) {
         thunderPlay1 = data;
         console.log(thunderPlay1);
+        console.log(data.external_urls.spotify)
     })
 }
 

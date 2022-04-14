@@ -46,3 +46,18 @@
 .parallax-container {
     height: 400px;
 }
+
+.btn-container{
+    width: 100%;
+    margin-top: 365px;
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.card-title{
+    -webkit-text-stroke: 1px black;
+    font-family: arial; color: green;
+}

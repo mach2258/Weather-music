@@ -53,6 +53,8 @@ function displayList() {
 
     if (!topOrBottom) {
 
+        $(".playlists-A").css("display", "flex");
+
         for (var i = 0; i < playlists.length; i++) {
 
             $("#image-" + i).attr("src", playlists[i].images[0].url);
@@ -66,6 +68,8 @@ function displayList() {
         }
 
     } else {
+
+        $(".playlists-B").css("display", "flex");
 
         for (var i = 0; i < playlists.length; i++) {
 

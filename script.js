@@ -1,5 +1,5 @@
 
-$(document).ready(function(){
+$(document).ready(function () {
     $('.parallax').parallax();
     console.log("hit")
 });
@@ -10,20 +10,20 @@ $("#other-location-btn").on("click", checkButton);
 
 function checkButton() {
     if ($('#paris-btn').prop('checked')) {
-        musicGet(weatherResponseParis);
+        getDataParis();
     } else if ($('#HK-btn').prop('checked')) {
-        musicGet(weatherResponseHK);
+        getDataHK();
     } else if ($('#cape-btn').prop('checked')) {
-        musicGet(weatherResponseCapeTown);
+        getDataCapeTown();
     } else if ($('#belmopan-btn').prop('checked')) {
-        musicGet(weatherResponseBelmopan);
+        getDataBelmopan();
     } else {
         return;
     }
 }
 
 function musicGetHere() {
-    musicGet(weatherResponseHere);
+    getLocation();
 }
 
 var weatherResponseHere
@@ -34,11 +34,6 @@ var weatherResponseHK
 var weatherResponseCapeTown
 var weatherResponseBelmopan
 
-getLocation();
-getDataParis();
-getDataHK();
-getDataCapeTown();
-getDataBelmopan();
 
 function getLocation() {
     fetch("http://ip-api.com/json")
@@ -60,6 +55,9 @@ function getData() {
         .then(function (data) {
             weatherResponseHere = data;
         })
+        .then(function () {
+            musicGet(weatherResponseHere);
+        })
 
 
 }
@@ -71,6 +69,9 @@ function getDataParis() {
         })
         .then(function (data) {
             weatherResponseParis = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseParis);
         })
 
 
@@ -84,6 +85,9 @@ function getDataHK() {
         .then(function (data) {
             weatherResponseHK = data;
         })
+        .then(function () {
+            musicGet(weatherResponseHK);
+        })
 
 
 }
@@ -96,6 +100,9 @@ function getDataCapeTown() {
         .then(function (data) {
             weatherResponseCapeTown = data;
         })
+        .then(function () {
+            musicGet(weatherResponseCapeTown);
+        })
 
 
 }
@@ -107,6 +114,9 @@ function getDataBelmopan() {
         })
         .then(function (data) {
             weatherResponseBelmopan = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseBelmopan);
         })
 
 
@@ -210,15 +220,13 @@ var playlists = [];
 var playlistURL = [];
 
 getToken();
-// getPlaylistStormy();
-getPlaylistSunny();
 
 function getToken() {
     fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
         headers: {
-            'Content-Type' : 'application/x-www-form-urlencoded', 
-            'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
         },
         body: 'grant_type=client_credentials'
     })
@@ -232,12 +240,14 @@ function getToken() {
 }
 
 function getPlaylistSunny() {
-    fetch(`https://api.spotify.com/v1/search?q=sunny&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=sunny&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -248,12 +258,14 @@ function getPlaylistSunny() {
 }
 
 function getPlaylistStormy() {
-    fetch(`https://api.spotify.com/v1/search?q=stormy%20days&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=stormy%20days&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -264,12 +276,14 @@ function getPlaylistStormy() {
 }
 
 function getPlaylistSnow() {
-    fetch(`https://api.spotify.com/v1/search?q=snowy&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=snowy&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -280,12 +294,14 @@ function getPlaylistSnow() {
 }
 
 function getPlaylistFog() {
-    fetch(`https://api.spotify.com/v1/search?q=foggy&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=foggy&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -296,12 +312,14 @@ function getPlaylistFog() {
 }
 
 function getPlaylistTornado() {
-    fetch(`https://api.spotify.com/v1/search?q=tornado&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=tornado&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -312,12 +330,14 @@ function getPlaylistTornado() {
 }
 
 function getPlaylistSandStorm() {
-    fetch(`https://api.spotify.com/v1/search?q=desert&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=desert&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -328,12 +348,14 @@ function getPlaylistSandStorm() {
 }
 
 function getPlaylistCold() {
-    fetch(`https://api.spotify.com/v1/search?q=cold%20days&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=cold%20days&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -344,12 +366,14 @@ function getPlaylistCold() {
 }
 
 function getPlaylistHot() {
-    fetch(`https://api.spotify.com/v1/search?q=summer&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=summer&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })

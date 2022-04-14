@@ -17,6 +17,12 @@ function checkButton() {
         getDataCapeTown();
     } else if ($('#belmopan-btn').prop('checked')) {
         getDataBelmopan();
+    } else if ($('#cold-btn').prop('checked')) {
+        getDataVinson();
+    } else if ($('#falls-btn').prop('checked')) {
+        getDataNiagra();
+    } else if ($('#rock-btn').prop('checked')) {
+        getDataAyers();
     } else {
         return;
     }
@@ -33,6 +39,9 @@ var weatherResponseParis
 var weatherResponseHK
 var weatherResponseCapeTown
 var weatherResponseBelmopan
+var weatherResponseVinson
+var weatherResponseNiagra
+var weatherResponseAyers
 
 
 function getLocation() {
@@ -93,7 +102,7 @@ function getDataHK() {
 }
 
 function getDataCapeTown() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=33.9249&lon=18.4241&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-33.9249&lon=18.4241&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
             return response.json();
         })
@@ -108,7 +117,7 @@ function getDataCapeTown() {
 }
 
 function getDataBelmopan() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=17.2510&lon=88.7590&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=17.2510&lon=-88.7700&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
             return response.json();
         })
@@ -120,6 +129,45 @@ function getDataBelmopan() {
         })
 
 
+}
+
+function getDataVinson() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-78.5333&lon=-85.5833&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseVinson = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseVinson);
+        })
+}
+
+function getDataNiagra() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=43.0962&lon=-79.0471&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseNiagra = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseNiagra);
+        })
+}
+
+function getDataAyers() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-25.3448&lon=131.0325&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseAyers = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseAyers);
+        })
 }
 
 function musicGet(weatherResponse) {

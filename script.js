@@ -8,6 +8,8 @@ $("#current-location-btn").on("click", musicGetHere);
 
 $("#other-location-btn").on("click", checkButton);
 
+$("#last-location-btn").on("click", musicGetPast);
+
 function checkButton() {
     topOrBottom = true;
     if ($('#paris-btn').prop('checked')) {
@@ -87,10 +89,15 @@ function displayList() {
 
 
 
+var lastLocation = JSON.parse(localStorage.getItem("lastLocation"));
 
-
-
-
+function musicGetPast() {
+    if (lastLocation) {
+        topOrBottom = false;
+        console.log("getting data from the past");
+        musicGet(lastLocation);
+    }
+}
 
 function getLocation() {
     fetch("http://ip-api.com/json")
@@ -111,6 +118,7 @@ function getData() {
         })
         .then(function (data) {
             weatherResponseHere = data;
+            localStorage.setItem("lastLocation", JSON.stringify(weatherResponseHere))
         })
         .then(function () {
             musicGet(weatherResponseHere);

@@ -1,5 +1,5 @@
 
-$(document).ready(function(){
+$(document).ready(function () {
     $('.parallax').parallax();
     console.log("hit")
 });
@@ -10,20 +10,26 @@ $("#other-location-btn").on("click", checkButton);
 
 function checkButton() {
     if ($('#paris-btn').prop('checked')) {
-        musicGet(weatherResponseParis);
+        getDataParis();
     } else if ($('#HK-btn').prop('checked')) {
-        musicGet(weatherResponseHK);
+        getDataHK();
     } else if ($('#cape-btn').prop('checked')) {
-        musicGet(weatherResponseCapeTown);
+        getDataCapeTown();
     } else if ($('#belmopan-btn').prop('checked')) {
-        musicGet(weatherResponseBelmopan);
+        getDataBelmopan();
+    } else if ($('#cold-btn').prop('checked')) {
+        getDataVinson();
+    } else if ($('#falls-btn').prop('checked')) {
+        getDataNiagra();
+    } else if ($('#rock-btn').prop('checked')) {
+        getDataAyers();
     } else {
         return;
     }
 }
 
 function musicGetHere() {
-    musicGet(weatherResponseHere);
+    getLocation();
 }
 
 var weatherResponseHere
@@ -33,12 +39,10 @@ var weatherResponseParis
 var weatherResponseHK
 var weatherResponseCapeTown
 var weatherResponseBelmopan
+var weatherResponseVinson
+var weatherResponseNiagra
+var weatherResponseAyers
 
-getLocation();
-getDataParis();
-getDataHK();
-getDataCapeTown();
-getDataBelmopan();
 
 function getLocation() {
     fetch("http://ip-api.com/json")
@@ -60,6 +64,9 @@ function getData() {
         .then(function (data) {
             weatherResponseHere = data;
         })
+        .then(function () {
+            musicGet(weatherResponseHere);
+        })
 
 
 }
@@ -71,6 +78,9 @@ function getDataParis() {
         })
         .then(function (data) {
             weatherResponseParis = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseParis);
         })
 
 
@@ -84,32 +94,80 @@ function getDataHK() {
         .then(function (data) {
             weatherResponseHK = data;
         })
+        .then(function () {
+            musicGet(weatherResponseHK);
+        })
 
 
 }
 
 function getDataCapeTown() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=33.9249&lon=18.4241&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-33.9249&lon=18.4241&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             weatherResponseCapeTown = data;
         })
+        .then(function () {
+            musicGet(weatherResponseCapeTown);
+        })
 
 
 }
 
 function getDataBelmopan() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=17.2510&lon=88.7590&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=17.2510&lon=-88.7700&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             weatherResponseBelmopan = data;
         })
+        .then(function () {
+            musicGet(weatherResponseBelmopan);
+        })
 
 
+}
+
+function getDataVinson() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-78.5333&lon=-85.5833&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseVinson = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseVinson);
+        })
+}
+
+function getDataNiagra() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=43.0962&lon=-79.0471&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseNiagra = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseNiagra);
+        })
+}
+
+function getDataAyers() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-25.3448&lon=131.0325&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            weatherResponseAyers = data;
+        })
+        .then(function () {
+            musicGet(weatherResponseAyers);
+        })
 }
 
 function musicGet(weatherResponse) {
@@ -210,15 +268,13 @@ var playlists = [];
 var playlistURL = [];
 
 getToken();
-// getPlaylistStormy();
-getPlaylistSunny();
 
 function getToken() {
     fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
         headers: {
-            'Content-Type' : 'application/x-www-form-urlencoded', 
-            'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
         },
         body: 'grant_type=client_credentials'
     })
@@ -227,17 +283,18 @@ function getToken() {
         })
         .then(function (data) {
             token = data.access_token;
-            console.log(data);
         })
 }
 
 function getPlaylistSunny() {
-    fetch(`https://api.spotify.com/v1/search?q=sunny&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=sunny&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -248,12 +305,14 @@ function getPlaylistSunny() {
 }
 
 function getPlaylistStormy() {
-    fetch(`https://api.spotify.com/v1/search?q=stormy%20days&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=stormy%20days&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -264,12 +323,14 @@ function getPlaylistStormy() {
 }
 
 function getPlaylistSnow() {
-    fetch(`https://api.spotify.com/v1/search?q=snowy&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=snowy&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -280,12 +341,14 @@ function getPlaylistSnow() {
 }
 
 function getPlaylistFog() {
-    fetch(`https://api.spotify.com/v1/search?q=foggy&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=foggy&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -296,12 +359,14 @@ function getPlaylistFog() {
 }
 
 function getPlaylistTornado() {
-    fetch(`https://api.spotify.com/v1/search?q=tornado&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=tornado&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -312,12 +377,14 @@ function getPlaylistTornado() {
 }
 
 function getPlaylistSandStorm() {
-    fetch(`https://api.spotify.com/v1/search?q=desert&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=desert&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -328,12 +395,14 @@ function getPlaylistSandStorm() {
 }
 
 function getPlaylistCold() {
-    fetch(`https://api.spotify.com/v1/search?q=cold%20days&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=cold%20days&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })
@@ -344,12 +413,14 @@ function getPlaylistCold() {
 }
 
 function getPlaylistHot() {
-    fetch(`https://api.spotify.com/v1/search?q=summer&type=playlist&limit=5&offset=5`, { 
+    fetch(`https://api.spotify.com/v1/search?q=summer&type=playlist&limit=5&offset=5`, {
         method: 'GET',
-        headers:{ 'Accept' : 'application/json', 
-        'Content-Type' : 'application/json', 
-        'Authorization' : 'Bearer ' + token}
-})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(function (response) {
             return response.json();
         })

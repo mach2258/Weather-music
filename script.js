@@ -283,7 +283,6 @@ function getToken() {
         })
         .then(function (data) {
             token = data.access_token;
-            console.log(data);
         })
 }
 

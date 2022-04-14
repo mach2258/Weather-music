@@ -9,6 +9,7 @@ $("#current-location-btn").on("click", musicGetHere);
 $("#other-location-btn").on("click", checkButton);
 
 function checkButton() {
+    topOrBottom = true;
     if ($('#paris-btn').prop('checked')) {
         getDataParis();
     } else if ($('#HK-btn').prop('checked')) {
@@ -29,36 +30,64 @@ function checkButton() {
 }
 
 function musicGetHere() {
+    topOrBottom = false;
     getLocation();
 }
 
-var weatherResponseHere
-var locationHereLat
-var locationHereLon
-var weatherResponseParis
-var weatherResponseHK
-var weatherResponseCapeTown
-var weatherResponseBelmopan
-var weatherResponseVinson
-var weatherResponseNiagra
-var weatherResponseAyers
+var weatherResponseHere;
+var locationHereLat;
+var locationHereLon;
+var weatherResponseParis;
+var weatherResponseHK;
+var weatherResponseCapeTown;
+var weatherResponseBelmopan;
+var weatherResponseVinson;
+var weatherResponseNiagra;
+var weatherResponseAyers;
+
+var topOrBottom = true;
 
 function displayList() {
-    for (var i = 0; i < playlists.length; i++) {
-        //(value.external_urls.spotify)
-        //value.images[0].url
 
-        $("#image-" + i).attr("src", playlists[i].images[0].url);
+    if (!topOrBottom) {
 
-        $("#title-" + i).text(playlists[i].name);
+        for (var i = 0; i < playlists.length; i++) {
+            //(value.external_urls.spotify)
+            //value.images[0].url
 
-        $("#link-" + i).attr("href", playlists[i].external_urls.spotify);
+            $("#image-" + i).attr("src", playlists[i].images[0].url);
 
-        $("#link-" + i).text("click to listen")
+            $("#title-" + i).text(playlists[i].name);
 
-        console.log(playlists[i].external_urls.spotify)
+            $("#link-" + i).attr("href", playlists[i].external_urls.spotify);
+
+            $("#link-" + i).text("click to listen")
+
+            console.log(playlists[i].external_urls.spotify)
+        }
+
+    } else {
+
+        for (var i = 0; i < playlists.length; i++) {
+            //(value.external_urls.spotify)
+            //value.images[0].url
+
+            $("#image2-" + i).attr("src", playlists[i].images[0].url);
+
+            $("#title2-" + i).text(playlists[i].name);
+
+            $("#link2-" + i).attr("href", playlists[i].external_urls.spotify);
+
+            $("#link2-" + i).text("click to listen")
+
+            console.log(playlists[i].external_urls.spotify)
+        }
     }
 }
+
+
+
+
 
 
 
@@ -227,7 +256,6 @@ function musicGet(weatherResponse) {
 
     // 12 or over is windy
 
-    var desiredPlaylist
 
     if (skyCondition >= 200 && skyCondition <= 531) {
         // desiredPlaylist = playlist for thunder

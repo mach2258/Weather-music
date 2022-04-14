@@ -11,6 +11,10 @@
     }
 } */
 
+body {
+    background-color: #EFEFEF;
+}
+
 .hero1 {
     height: 700px;
     width: 100%;
@@ -57,24 +61,44 @@
     align-items: flex-end;
 }
 
+#form-div form {
+    background-color: white;
+}
+
 .card-title{
     background-color: #00C853;
     margin: 0px;
     padding: 5px !important;
 }
 
-.playlists {
-    display: flex;
+.playlists-A {
+    display: none;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
 
-.playlists div {
+.playlists-A div {
     width: 300px !important;
 }
 
-.playlists .card-image {
+.playlists-A .card-image {
+    height: 300px !important;
+    overflow: hidden !important;
+}
+
+.playlists-B {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.playlists-B div {
+    width: 300px !important;
+}
+
+.playlists-B .card-image {
     height: 300px !important;
     overflow: hidden !important;
 }

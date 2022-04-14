@@ -43,6 +43,25 @@ var weatherResponseVinson
 var weatherResponseNiagra
 var weatherResponseAyers
 
+function displayList() {
+    for (var i = 0; i < playlists.length; i++) {
+        //(value.external_urls.spotify)
+        //value.images[0].url
+
+        $("#image-" + i).attr("src", playlists[i].images[0].url);
+
+        $("#title-" + i).text(playlists[i].name);
+
+        $("#link-" + i).attr("href", playlists[i].external_urls.spotify);
+
+        $("#link-" + i).text("click to listen")
+
+        console.log(playlists[i].external_urls.spotify)
+    }
+}
+
+
+
 
 function getLocation() {
     fetch("http://ip-api.com/json")
@@ -301,6 +320,7 @@ function getPlaylistSunny() {
         .then(function (data) {
             playlists = data.playlists.items;
             console.log(playlists);
+            displayList();
         })
 }
 
@@ -319,6 +339,7 @@ function getPlaylistStormy() {
         .then(function (data) {
             playlists = data.playlists.items;
             console.log(playlists);
+            displayList();
         })
 }
 
@@ -337,6 +358,7 @@ function getPlaylistSnow() {
         .then(function (data) {
             playlists = data.playlists.items;
             console.log(playlists);
+            displayList();
         })
 }
 
@@ -355,6 +377,7 @@ function getPlaylistFog() {
         .then(function (data) {
             playlists = data.playlists.items;
             console.log(playlists);
+            displayList();
         })
 }
 
@@ -373,6 +396,7 @@ function getPlaylistTornado() {
         .then(function (data) {
             playlists = data.playlists.items;
             console.log(playlists);
+            displayList();
         })
 }
 
@@ -391,6 +415,7 @@ function getPlaylistSandStorm() {
         .then(function (data) {
             playlists = data.playlists.items;
             console.log(playlists);
+            displayList();
         })
 }
 
@@ -409,6 +434,7 @@ function getPlaylistCold() {
         .then(function (data) {
             playlists = data.playlists.items;
             console.log(playlists);
+            displayList();
         })
 }
 
@@ -427,5 +453,6 @@ function getPlaylistHot() {
         .then(function (data) {
             playlists = data.playlists.items;
             console.log(playlists);
+            displayList();
         })
 }

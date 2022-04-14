@@ -8,6 +8,8 @@ $("#current-location-btn").on("click", musicGetHere);
 
 $("#other-location-btn").on("click", checkButton);
 
+$("#last-location-btn").on("click", musicGetPast);
+
 function checkButton() {
     topOrBottom = true;
     if ($('#paris-btn').prop('checked')) {
@@ -52,8 +54,6 @@ function displayList() {
     if (!topOrBottom) {
 
         for (var i = 0; i < playlists.length; i++) {
-            //(value.external_urls.spotify)
-            //value.images[0].url
 
             $("#image-" + i).attr("src", playlists[i].images[0].url);
 
@@ -63,14 +63,11 @@ function displayList() {
 
             $("#link-" + i).text("click to listen")
 
-            console.log(playlists[i].external_urls.spotify)
         }
 
     } else {
 
         for (var i = 0; i < playlists.length; i++) {
-            //(value.external_urls.spotify)
-            //value.images[0].url
 
             $("#image2-" + i).attr("src", playlists[i].images[0].url);
 
@@ -80,17 +77,21 @@ function displayList() {
 
             $("#link2-" + i).text("click to listen")
 
-            console.log(playlists[i].external_urls.spotify)
         }
     }
 }
 
 
 
+var lastLocation = JSON.parse(localStorage.getItem("lastLocation"));
 
-
-
-
+function musicGetPast() {
+    if (lastLocation) {
+        topOrBottom = false;
+        console.log("getting data from the past");
+        musicGet(lastLocation);
+    }
+}
 
 function getLocation() {
     fetch("http://ip-api.com/json")
@@ -111,6 +112,7 @@ function getData() {
         })
         .then(function (data) {
             weatherResponseHere = data;
+            localStorage.setItem("lastLocation", JSON.stringify(weatherResponseHere))
         })
         .then(function () {
             musicGet(weatherResponseHere);
@@ -250,13 +252,6 @@ function musicGet(weatherResponse) {
 
     // 303- hot day
 
-    var windSpeed = weatherResponse.wind.speed
-
-    // windSpeed is a number
-
-    // 12 or over is windy
-
-
     if (skyCondition >= 200 && skyCondition <= 531) {
         // desiredPlaylist = playlist for thunder
         playlists = '';
@@ -299,11 +294,6 @@ function musicGet(weatherResponse) {
         playlists = '';
         getPlaylistSunny();
     }
-
-    //get playlist from spotify
-
-    //assign playlist to html elements
-
 
 }
 

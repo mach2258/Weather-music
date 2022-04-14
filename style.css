@@ -24,7 +24,7 @@
 }
 
 .hero2 {
-    height: 700px;
+    height: 590px;
     width: 100%;
     margin-top: 25px;
     background-image: url("./assets/desk.jpg");
@@ -58,6 +58,23 @@
 }
 
 .card-title{
-    -webkit-text-stroke: 1px black;
-    font-family: arial; color: green;
+    background-color: #00C853;
+    margin: 0px;
+    padding: 5px !important;
+}
+
+.playlists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.playlists div {
+    width: 300px !important;
+}
+
+.playlists .card-image {
+    height: 300px !important;
+    overflow: hidden !important;
 }

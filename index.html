@@ -14,246 +14,254 @@
 </head>
 
 <body>
-<nav>
-    <div class="nav-wrapper green accent-4">
-        <a href="#" class="brand-logo center"><i class="material-icons large right">cloud</i>SkyNotes!</a>
-    </div>
-</nav>
+    <nav>
+        <div class="nav-wrapper green accent-4">
+            <a href="#" class="brand-logo center"><i class="material-icons large right">cloud</i>SkyNotes!</a>
+        </div>
+    </nav>
 
-<section class="hero1">
+    <section class="hero1">
+        <!-- button for getting a playlist from our current location -->
         <div id="button-container">
             <a class="waves-effect waves-light btn green accent-4 z-depth-3" id="current-location-btn"><i
                     class="material-icons left">cloud</i>Generate playlist for your location</a>
         </div>
+        <!-- button for getting the last playlist from the first button -->
         <div id="button-container">
             <a class="waves-effect waves-light btn green accent-4 z-depth-3" id="last-location-btn"><i
                     class="material-icons left">cloud</i>Pick last playlist generated</a>
         </div>
-</section>
+    </section>
 
-<div class="playlists-A">
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image-0">
-                        <span class="card-title" id="title-0"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link-0"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image-1">
-                        <span class="card-title" id="title-1"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link-1"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image-2">
-                        <span class="card-title" id="title-2"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link-2"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image-3">
-                        <span class="card-title" id="title-3"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link-3"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image-4">
-                        <span class="card-title" id="title-4"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link-4"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="parallax-container">
+    <!-- current location playlists -->
+    <div class="playlists-A">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image-0">
+                            <span class="card-title" id="title-0"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link-0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image-1">
+                            <span class="card-title" id="title-1"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link-1"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image-2">
+                            <span class="card-title" id="title-2"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link-2"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image-3">
+                            <span class="card-title" id="title-3"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link-3"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image-4">
+                            <span class="card-title" id="title-4"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link-4"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-container">
         <div class="parallax">
             <img src="images/diego-ph-BCuxVP5WEsU-unsplash.jpg" alt="" class="responsive-img">
         </div>
         <div class="btn-container">
             <a class="waves-effect waves-light btn green accent-4 z-depth-3" id="other-location-btn"><i
-                class="material-icons left">cloud</i>See what the mood is in a
-            different place</a>
+                    class="material-icons left">cloud</i>See what the mood is in a
+                different place</a>
         </div>
-</div>
+    </div>
 
-<div class="collection container" id="form-div">
-    <form action="#">
-        <p>
-            <label>
-                <input class="with-gap" name="group1" type="radio" id="paris-btn" />
-                <span>Paris</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input class="with-gap" name="group1" type="radio" id="HK-btn" />
-                <span>Hong Kong</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input class="with-gap" name="group1" type="radio" id="cape-btn" />
-                <span>Cape Town</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input class="with-gap" name="group1" type="radio" id="belmopan-btn" />
-                <span>Belmopan</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input class="with-gap" name="group1" type="radio" id="cold-btn" />
-                <span>Vinson Massif, highest peak in Antarctica</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input class="with-gap" name="group1" type="radio" id="falls-btn" />
-                <span>Niagra Falls</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input class="with-gap" name="group1" type="radio" id="rock-btn" />
-                <span>Uluru, formerly Ayers Rock</span>
-            </label>
-        </p>
-    </form>
-</div>
 
-<div class="playlists-B">
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image2-0">
-                        <span class="card-title" id="title2-0"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link2-0"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- world-wide location buttons -->
+    <div class="collection container" id="form-div">
+        <form action="#">
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" type="radio" id="paris-btn" />
+                    <span>Paris</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" type="radio" id="HK-btn" />
+                    <span>Hong Kong</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" type="radio" id="cape-btn" />
+                    <span>Cape Town</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" type="radio" id="belmopan-btn" />
+                    <span>Belmopan</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" type="radio" id="cold-btn" />
+                    <span>Vinson Massif, highest peak in Antarctica</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" type="radio" id="falls-btn" />
+                    <span>Niagra Falls</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" type="radio" id="rock-btn" />
+                    <span>Uluru, formerly Ayers Rock</span>
+                </label>
+            </p>
+        </form>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image2-1">
-                        <span class="card-title" id="title2-1"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link2-1"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image2-2">
-                        <span class="card-title" id="title2-2"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link2-2"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image2-3">
-                        <span class="card-title" id="title2-3"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link2-3"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" id="image2-4">
-                        <span class="card-title" id="title2-4"></span>
-                    </div>
-                    <div class="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href="#" id="link2-4"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="parallax-container">
+
+    <!-- playlists for world-wide location -->
+    <div class="playlists-B">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image2-0">
+                            <span class="card-title" id="title2-0"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link2-0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image2-1">
+                            <span class="card-title" id="title2-1"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link2-1"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image2-2">
+                            <span class="card-title" id="title2-2"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link2-2"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image2-3">
+                            <span class="card-title" id="title2-3"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link2-3"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="" id="image2-4">
+                            <span class="card-title" id="title2-4"></span>
+                        </div>
+                        <div class="card-action">
+                            <a target="_blank" rel="noopener noreferrer" href="#" id="link2-4"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-container">
         <div class="parallax">
             <img src="./assets/clouds.jpg" alt="" class="responsive-img">
         </div>
-</div>
+    </div>
 
-<section class="hero2"></section>
+    <section class="hero2"></section>
 
-<footer class="page-footer green accent-4">
+    <footer class="page-footer green accent-4">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
@@ -269,11 +277,11 @@
         <div class="footer-copyright">
             <div class="container">© 2022 Copyright Text</div>
         </div>
-</footer>
+    </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./script.js"></script>
 
 </body>
 

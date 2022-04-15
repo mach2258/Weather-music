@@ -4,12 +4,14 @@ $(document).ready(function () {
     console.log("hit")
 });
 
+// event listeners
 $("#current-location-btn").on("click", musicGetHere);
 
 $("#other-location-btn").on("click", checkButton);
 
 $("#last-location-btn").on("click", musicGetPast);
 
+// indentifies which radio button is checked
 function checkButton() {
     topOrBottom = true;
     if ($('#paris-btn').prop('checked')) {
@@ -31,11 +33,14 @@ function checkButton() {
     }
 }
 
+// this function used to do more
 function musicGetHere() {
     topOrBottom = false;
     getLocation();
 }
 
+
+// variables for storing fetched data
 var weatherResponseHere;
 var locationHereLat;
 var locationHereLon;
@@ -46,12 +51,14 @@ var weatherResponseBelmopan;
 var weatherResponseVinson;
 var weatherResponseNiagra;
 var weatherResponseAyers;
-
 var topOrBottom = true;
 
+// puts data from the spotify functions into one of two containers
 function displayList() {
 
     if (!topOrBottom) {
+
+        //top section
 
         $(".playlists-A").css("display", "flex");
 
@@ -68,6 +75,8 @@ function displayList() {
         }
 
     } else {
+
+        //bottom section
 
         $(".playlists-B").css("display", "flex");
 
@@ -86,9 +95,10 @@ function displayList() {
 }
 
 
-
+//local storage of the last "current" location
 var lastLocation = JSON.parse(localStorage.getItem("lastLocation"));
 
+//makes sure there is data in local storage to get
 function musicGetPast() {
     if (lastLocation) {
         topOrBottom = false;
@@ -97,8 +107,10 @@ function musicGetPast() {
     }
 }
 
+
+//extracts lat and long from ip
 function getLocation() {
-    fetch("http://ip-api.com/json")
+    fetch("https://ip-api.com/json")
         .then(function (response) {
             return response.json();
         })
@@ -109,6 +121,8 @@ function getLocation() {
         })
 }
 
+
+//gets weather data for current location
 function getData() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${locationHereLat}&lon=${locationHereLon}&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
@@ -125,6 +139,8 @@ function getData() {
 
 }
 
+
+//weather data for paris, only gets called if paris button is checked
 function getDataParis() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=48.8566&lon=2.3522&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
@@ -140,6 +156,8 @@ function getDataParis() {
 
 }
 
+
+//weather data for paris, only gets called if HK button is checked
 function getDataHK() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=22.3193&lon=114.1694&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
@@ -155,6 +173,7 @@ function getDataHK() {
 
 }
 
+//weather data for paris, only gets called if cape town button is checked
 function getDataCapeTown() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-33.9249&lon=18.4241&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
@@ -170,6 +189,7 @@ function getDataCapeTown() {
 
 }
 
+//weather data for paris, only gets called if belmopan button is checked
 function getDataBelmopan() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=17.2510&lon=-88.7700&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
@@ -185,6 +205,8 @@ function getDataBelmopan() {
 
 }
 
+
+//weather data for paris, only gets called if antarctica button is checked
 function getDataVinson() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-78.5333&lon=-85.5833&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
@@ -198,6 +220,7 @@ function getDataVinson() {
         })
 }
 
+//weather data for paris, only gets called if niagra falls button is checked
 function getDataNiagra() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=43.0962&lon=-79.0471&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
@@ -211,6 +234,8 @@ function getDataNiagra() {
         })
 }
 
+
+////weather data for paris, only gets called if uluru button is checked
 function getDataAyers() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-25.3448&lon=131.0325&appid=5ff5cac73a1063fefa1a4b5e6eb8806c`)
         .then(function (response) {
@@ -224,6 +249,8 @@ function getDataAyers() {
         })
 }
 
+
+//sorts weather data into which spotify function is called based on sky condition
 function musicGet(weatherResponse) {
     console.log(weatherResponse)
     var skyCondition = weatherResponse.weather[0].id;
@@ -257,44 +284,34 @@ function musicGet(weatherResponse) {
     // 303- hot day
 
     if (skyCondition >= 200 && skyCondition <= 531) {
-        // desiredPlaylist = playlist for thunder
         playlists = '';
         getPlaylistStormy();
 
     } else if (skyCondition >= 300 && skyCondition <= 321) {
-        // desiredPlaylist = playlist for light rain
         playlists = '';
         getPlaylistStormy();
     } else if (skyCondition >= 500 && skyCondition <= 531) {
-        // desiredPlaylist = playlist for heavy rain
         playlists = '';
         getPlaylistStormy();
     } else if (skyCondition >= 600 && skyCondition <= 622) {
-        // desiredPlaylist = playlist for snow
         playlists = '';
         getPlaylistSnow();
     } else if (skyCondition == 741) {
-        // desiredPlaylist = playlist for fog
         playlists = '';
         getPlaylistFog();
     } else if (skyCondition == 781) {
-        // desiredPlaylist = playlist for tornado
         playlists = '';
         getPlaylistTornado();
     } else if (skyCondition == 751) {
-        // desiredPlaylist = playlist for sandstorm
         playlists = '';
         getPlaylistSandStorm();
     } else if (temp <= 283) {
-        // desiredPlaylist = playlist for cold day
         playlists = '';
         getPlaylistCold();
     } else if (temp >= 300) {
-        // desiredPlaylist = playlist for hot day
         playlists = '';
         getPlaylistHot();
     } else {
-        // desiredPlaylist = playlist for nice day
         playlists = '';
         getPlaylistSunny();
     }
@@ -310,6 +327,7 @@ var playlistURL = [];
 
 getToken();
 
+//authorized spotify
 function getToken() {
     fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -327,6 +345,7 @@ function getToken() {
         })
 }
 
+//search playlists for clear skies
 function getPlaylistSunny() {
     fetch(`https://api.spotify.com/v1/search?q=sunny&type=playlist&limit=5&offset=5`, {
         method: 'GET',
@@ -346,6 +365,7 @@ function getPlaylistSunny() {
         })
 }
 
+//search playlists for stormy skies
 function getPlaylistStormy() {
     fetch(`https://api.spotify.com/v1/search?q=stormy%20days&type=playlist&limit=5&offset=5`, {
         method: 'GET',
@@ -365,6 +385,7 @@ function getPlaylistStormy() {
         })
 }
 
+//search playlists for snow
 function getPlaylistSnow() {
     fetch(`https://api.spotify.com/v1/search?q=snowy&type=playlist&limit=5&offset=5`, {
         method: 'GET',
@@ -384,6 +405,7 @@ function getPlaylistSnow() {
         })
 }
 
+//search playlists for fog
 function getPlaylistFog() {
     fetch(`https://api.spotify.com/v1/search?q=foggy&type=playlist&limit=5&offset=5`, {
         method: 'GET',
@@ -403,6 +425,7 @@ function getPlaylistFog() {
         })
 }
 
+//search playlists for tornado
 function getPlaylistTornado() {
     fetch(`https://api.spotify.com/v1/search?q=tornado&type=playlist&limit=5&offset=5`, {
         method: 'GET',
@@ -422,6 +445,7 @@ function getPlaylistTornado() {
         })
 }
 
+//search playlists for sandstorm
 function getPlaylistSandStorm() {
     fetch(`https://api.spotify.com/v1/search?q=desert&type=playlist&limit=5&offset=5`, {
         method: 'GET',
@@ -441,6 +465,7 @@ function getPlaylistSandStorm() {
         })
 }
 
+//search playlists for cold days
 function getPlaylistCold() {
     fetch(`https://api.spotify.com/v1/search?q=cold%20days&type=playlist&limit=5&offset=5`, {
         method: 'GET',
@@ -460,6 +485,7 @@ function getPlaylistCold() {
         })
 }
 
+//search playlists for hot days
 function getPlaylistHot() {
     fetch(`https://api.spotify.com/v1/search?q=summer&type=playlist&limit=5&offset=5`, {
         method: 'GET',

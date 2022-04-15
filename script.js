@@ -110,13 +110,13 @@ function musicGetPast() {
 
 //extracts lat and long from ip
 function getLocation() {
-    fetch("https://ip-api.com/json")
+    fetch(`https://ipwhois.app/json/none`)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            locationHereLat = data.lat;
-            locationHereLon = data.lon;
+            locationHereLat = data.latitude;
+            locationHereLon = data.longitude;
             getData();
         })
 }
